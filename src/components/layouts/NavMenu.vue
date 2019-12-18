@@ -4,7 +4,8 @@
             Yuan Lu
         </div>
         <transition name="navanmi" class="navanmi" type="animation">
-        <el-menu default-active="1-4-1"
+
+        <el-menu default-active="1-1"
                  class="el-menu-vertical-demo"
                  @open="handleOpen"
                  @close="handleClose"
@@ -12,22 +13,17 @@
                  background-color="#545c64"
                  text-color="#fff"
                  active-text-color="#ffd04b">
-
-        <el-submenu index="1">
-            <template slot="title">
-                <i class="el-icon-location"></i>
-                <span slot="title">菜单一</span>
-            </template>
-            <el-menu-item-group>
-                <router-link to="/index">
-                    <el-menu-item index="1-1">首页</el-menu-item>
-                </router-link>
-
-                <router-link to="/tab">
-                <el-menu-item index="1-2">其他</el-menu-item></router-link>
-            </el-menu-item-group>
-        </el-submenu>
-
+            <el-submenu  v-for="(first, find) in menuList" :key="find" :index="find.toString()">
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span slot="title">{{first.meta.title}}</span>
+                </template>
+                <el-menu-item-group>
+                    <router-link v-for="(second, sind) in first.children" :key="sind" :to="second.path">
+                        <el-menu-item :index="find.toString()+'-'+sind.toString()">{{second.meta.title}}</el-menu-item>
+                    </router-link>
+                </el-menu-item-group>
+            </el-submenu>
     </el-menu>
         </transition>
     </div>
@@ -40,7 +36,11 @@
         data() {
             return {
                 // isCollapse: false
+                menuList: []
             };
+        },
+        created(){
+            this.reviewRoute();
         },
         watch:{
 
@@ -57,6 +57,11 @@
             })
         },
         methods: {
+            reviewRoute() {
+                this.menuList = this.$router['options']['routes'];
+                window.console.log(this.menuList);
+
+            },
             handleOpen() { // key, keyPath
 
             },

@@ -3,7 +3,7 @@
 
         <ScrollPane class="tags-view-wrap">
             <router-link v-for="tag in Array.from(visitedViews)" :to="tag.path" :key="tag.path"  class="tags-view-item" :class="isActive(tag)?'active':''">
-                {{tag.name}}
+                {{tag.title}}
                 <span class='el-icon-close' @click.prevent.stop="delSelectTag(tag)"></span>
             </router-link>
         </ScrollPane>

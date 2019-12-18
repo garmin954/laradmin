@@ -13,6 +13,9 @@ export default {
   components: {
     Base
   },
+  mounted() {
+    // window.console.log(this.$router['options']);
+  }
   // created() {
   //   NProgress.start();  // 开始加载
   // },
