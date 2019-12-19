@@ -54,6 +54,7 @@ export default {
   }
   html,body,#app{
     height: 100%;
+    background: #f2f2f2;
   }
   a{text-decoration: none}
 </style>

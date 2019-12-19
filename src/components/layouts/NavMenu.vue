@@ -5,12 +5,12 @@
         </div>
         <transition name="navanmi" class="navanmi" type="animation">
 
-        <el-menu default-active="1-1"
+        <el-menu default-active=""
                  class="el-menu-vertical-demo"
                  @open="handleOpen"
                  @close="handleClose"
                  :collapse="show"
-                 background-color="#545c64"
+                 background-color="#4E5465"
                  text-color="#fff"
                  active-text-color="#ffd04b">
             <el-submenu  v-for="(first, find) in menuList" :key="find" :index="find.toString()">
@@ -21,6 +21,18 @@
                 <el-menu-item-group>
                     <router-link v-for="(second, sind) in first.children" :key="sind" :to="second.path">
                         <el-menu-item :index="find.toString()+'-'+sind.toString()">{{second.meta.title}}</el-menu-item>
+                    </router-link>
+                </el-menu-item-group>
+            </el-submenu>
+
+            <el-submenu  index="5">
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span slot="title">首页s</span>
+                </template>
+                <el-menu-item-group>
+                    <router-link to="/tab">
+                        <el-menu-item index="5-1">Tab</el-menu-item>
                     </router-link>
                 </el-menu-item-group>
             </el-submenu>
@@ -71,7 +83,9 @@
         }
     }
 </script>
-<style scoped>
+<style lang="scss" scoped type="text/css">
+    @import "~@/assets/css/variable.scss";
+
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 100%;
     }
@@ -80,7 +94,7 @@
         text-align: center;
         height: 50px;
         line-height: 50px;
-        color: white;
+        color: $pink;
         border-bottom: 1px solid #495057;
     }
     .menu-box{

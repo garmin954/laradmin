@@ -3,71 +3,40 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-import Index from '../components/pages/index/Index';
-import Tab from '../components/pages/index/Tab';
+// import Index from '../components/pages/index/Index';
+// import Tab from '../components/pages/index/Tab';
 
 import AdminIndex from '../components/pages/admin/Index'
 import AdminTab from '../components/pages/admin/Tab'
-
+import AppMain from '../components/layouts/AppMain'
 export default new VueRouter({
 
     routes:[
         {
-            path : '/admin/',
+            path : '/',
+            redirect: '/index',
+            component: AppMain,
+            meta: {title: '后台'},
+            children:[
+                {
+                    path : '/admin/admin-index',
+                    meta: {title: '首页1111'},
+                    name: 'index',
+                    component : AdminIndex,
+                },
+                {
+                    path : '/admin/tab',
+                    meta: {title: 'TAB222'},
+                    name: 'tab',
+                    component : AdminTab,
+                },
+            ]
+        },
+        {
+            path : '/admin',
+            meta: {title: '后台首页'},
             name: 'admin',
-            meta: {title: '后台'},
-            children:[
-                {
-                    path : '/admin/index',
-                    meta: {title: '首页'},
-                    name: 'adminindex',
-                    component : AdminIndex,
-                },
-                {
-                    path : '/admin/tab',
-                    meta: {title: 'TAB'},
-                    name: 'admintab',
-                    component : AdminTab,
-                },
-            ]
+            component : AdminIndex,
         },
-        {
-            path : '/index',
-            name: 'index',
-            meta: {title: '后台'},
-            children:[
-                {
-                    path : '/index',
-                    meta: {title: '首页s'},
-                    name: 'adminindexs',
-                    component : Index,
-                },
-                {
-                    path : '/tab',
-                    meta: {title: 'TABs'},
-                    name: 'admintabs',
-                    component : Tab,
-                },
-            ]
-        },
-        {
-            path : '/tab',
-            name: 'tab',
-            meta: {title: '后台'},
-            children:[
-                {
-                    path : '/admin/index',
-                    meta: {title: '首页'},
-                    name: 'adminindexss',
-                    component : AdminIndex,
-                },
-                {
-                    path : '/admin/tab',
-                    meta: {title: 'TAB'},
-                    name: 'admintabss',
-                    component : AdminTab,
-                },
-            ]
-        }
     ]
 })

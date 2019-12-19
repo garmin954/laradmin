@@ -1,16 +1,20 @@
 <template>
+    <div>
     <el-scrollbar ref="scrollContainer" :vertical="false" class="scroll-container" @wheel.native.prevent="handleScroll">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <slot/>
             </div>
+            <div class="switch-button switch-button-left el-icon-d-arrow-left"></div>
+            <div class="switch-button switch-button-right el-icon-d-arrow-right"></div>
         </div>
     </el-scrollbar>
+    </div>
 </template>
 
 <script>
     import Swiper from  'swiper'
-
+    import 'swiper/css/swiper.min.css'
     const tagAndTagSpacing = 4; // tagAndTagSpacing
 
     export default {
@@ -24,9 +28,13 @@
             this.$nextTick(function(){
                 new Swiper(".swiper-container",{
                     direction:"horizontal",/*横向滑动*/
-                    loop:true,//形成环路（即：可以从最后一张图跳转到第一张图
+                    // loop:true,//形成环路（即：可以从最后一张图跳转到第一张图
                     pagination:".swiper-pagination",/*分页器*/
-                    autoplay:3000/*每隔3秒自动播放*/
+                    autoplay:1000,/*每隔3秒自动播放*/
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
                 });
             })
         },
@@ -84,6 +92,36 @@
 </script>
 
 <style >
+    .switch-button{
+        position: absolute;
+        top: 95%;
+        width: calc(var(--swiper-navigation-size)/ 44 * 27);
+        height: var(--swiper-navigation-size);
+        margin-top: calc(-1 * var(--swiper-navigation-size)/ 2);
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /*color: var(--swiper-navigation-color,var(--swiper-theme-color));*/
+        color: dimgrey;
+
+    }
+    .switch-button-left{
+        left: 10px;
+        right: auto;
+    }
+    .switch-button-right{
+        right: 10px;
+        left: auto;
+    }
+    .swiper-wrapper{
+        box-sizing: content-box;
+        padding: 0 10px;
+        margin: 0 10px;
+    }
+    .el-scrollbar__view{position: static}
+
     .scroll-container {
         white-space: nowrap;
         position: relative;

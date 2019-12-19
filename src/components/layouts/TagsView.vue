@@ -1,12 +1,19 @@
 <template id="">
     <div class="tags-view-container">
+        <div class="const-btn">
+            <div class="close-all" @click="closeAllNav"><i class="el-icon-circle-close"></i></div>
+            <router-link to="/admin">
+                <div class="tags-view-item nav-index"><i class="el-icon-house"></i></div>
+            </router-link>
+        </div>
+        <scroll-pane class="tags-view-wrap">
 
-        <ScrollPane class="tags-view-wrap">
             <router-link v-for="tag in Array.from(visitedViews)" :to="tag.path" :key="tag.path"  class="tags-view-item" :class="isActive(tag)?'active':''">
                 {{tag.title}}
                 <span class='el-icon-close' @click.prevent.stop="delSelectTag(tag)"></span>
             </router-link>
-        </ScrollPane>
+
+        </scroll-pane>
 
     </div>
 </template>
@@ -51,11 +58,42 @@
                         }
                     }
                 })
+            },
+            closeAllNav(){
+                // this.$message('关闭所有');
+                this.$store.dispatch('delAllVisitedViews', this.$router);
             }
         }
     }
 </script>
 
 <style scoped>
+    .el-icon-circle-close{font-size: 1rem;color: #1C1D21;}
+    .close-all,.nav-index{
+        position: relative;
+        left: 10px;
+    }
+    .close-all{
+        display: block;
+        float: left;
+        cursor: pointer;
+        line-height: 34px;
+        margin-left: 12px
+    }
+    .const-btn{
+        float: left;
+        width: 100px;
+        border-right: 1px solid #d8dce5;
+    }
+    .tags-view-wrap{
+        float: left;
+        width: calc(100% - 110px);
+    }
 
+    /*.close-all-box{*/
+        /*width: 3rem;*/
+        /*position: absolute;*/
+        /*right: 0px;*/
+        /*background: white;*/
+    /*}*/
 </style>

@@ -3,15 +3,15 @@
 
         <el-container>
             <el-aside ref="leftnav" width="230px">
-                <NavMenu :show="showNav" ></NavMenu>
+                <nav-menu :show="showNav" ></nav-menu>
             </el-aside>
             <el-container>
                 <el-header>
-                    <TopMenu @changenav="changeNav"></TopMenu>
-                    <TagsView></TagsView>
+                    <top-menu @changenav="changeNav"></top-menu>
+                    <tags-view></tags-view>
                 </el-header>
                 <el-main>
-                    <router-view></router-view>
+                    <app-main></app-main>
                 </el-main>
             </el-container>
         </el-container>
@@ -25,13 +25,14 @@
     import NavMenu from './NavMenu';
     import TopMenu from './TopMenu';
     import TagsView from './TagsView';
-
+    import AppMain from './AppMain';
     export default {
         name: "Base",
         components:{
             NavMenu,
             TopMenu,
-            TagsView
+            TagsView,
+            AppMain
         },
         data() {
             return {
@@ -62,12 +63,16 @@
     .el-header{
         height: 80px!important;
         box-sizing: content-box;
-        padding: 0px 0px 0px 5px;
+        padding: 0px 0px 0px 0px;
+        background: #ffffff;
     }
     .base-box, .el-container, .el-aside{
         height: 100%;
     }
 
+    .el-main{
+        padding: 20px 30px 20px 20px;
+    }
     .el-aside{transition: all 0.8s;}
 
     /*.navanim{width: 230px}*/
