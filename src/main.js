@@ -38,6 +38,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach(transition => {
   NProgress.done();
-  window.console.log(transition);
+    transition;
+  // window.console.log(transition);
 });
 

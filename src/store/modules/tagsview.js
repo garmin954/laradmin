@@ -23,6 +23,15 @@ const tagsview ={
         },
         DEL_ALL_VISITED_VIEWS:(state)=>{
             state.visitedviews = [];
+        },
+
+        UPDATE_VISITED_VIEW: (state, view) => {
+            for (let v of state.visitedViews) {
+                if (v.path === view.path) {
+                    v = Object.assign(v, view)
+                    break
+                }
+            }
         }
     },
     actions:{//调用这里去触发mutations，如何调用？在组件内使用this.$store.dispatch('action中对应名字', 参数)
@@ -45,6 +54,9 @@ const tagsview ={
             //
             // })
         },
+        updateVisitedView({ commit }, view) {
+            commit('UPDATE_VISITED_VIEW', view)
+        }
     }
 }
 

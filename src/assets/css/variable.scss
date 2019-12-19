@@ -3,6 +3,8 @@
 $vw_base: 375;
 $pink: pink !default;
 $pink: pink; //下面的层级高
+$color: #2d2f30;
+$active-nav: #3c3f41;
 @function vw($px) {
   @return ($px / 375) * 100vw;
 }

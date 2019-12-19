@@ -6,9 +6,14 @@
                 <div class="tags-view-item nav-index"><i class="el-icon-house"></i></div>
             </router-link>
         </div>
-        <scroll-pane class="tags-view-wrap">
+        <scroll-pane ref="scrollPane"  class="tags-view-wrap">
 
-            <router-link v-for="tag in Array.from(visitedViews)" :to="tag.path" :key="tag.path"  class="tags-view-item" :class="isActive(tag)?'active':''">
+            <router-link
+                    v-for="tag in Array.from(visitedViews)"
+                    ref="tag"
+                    :to="tag.path" :key="tag.path"
+                    class="tags-view-item "
+                    :class="isActive(tag)?'active':''">
                 {{tag.title}}
                 <span class='el-icon-close' @click.prevent.stop="delSelectTag(tag)"></span>
             </router-link>
@@ -34,6 +39,7 @@
         watch:{
             $route(){
                 this.addViewTags();
+                this.moveToCurrentTag()
             }
         },
         methods:{
@@ -62,7 +68,29 @@
             closeAllNav(){
                 // this.$message('关闭所有');
                 this.$store.dispatch('delAllVisitedViews', this.$router);
-            }
+            },
+            moveToCurrentTag() {
+                const tags = this.$refs.tag;
+                // let self = this;
+                this.$nextTick(() => {
+                    window.console.log(tags);
+                    if (tags !== undefined){
+                        for (const tag of tags) {
+                            if (tag.to.path === this.$route.path) {
+                                // window.console.log(self.$refs)
+                                this.$refs.scrollPane.moveToTarget(tag)
+                                //when query is different then update
+                                if (tag.to.fullPath !== this.$route.fullPath) {
+                                    this.$store.dispatch('updateVisitedView', this.$route)
+                                }
+                                break
+                            }
+                        }
+                    }
+
+                })
+            },
+
         }
     }
 </script>

@@ -10,7 +10,7 @@
                  @open="handleOpen"
                  @close="handleClose"
                  :collapse="show"
-                 background-color="#4E5465"
+                 background-color="#2d2f30"
                  text-color="#fff"
                  active-text-color="#ffd04b">
             <el-submenu  v-for="(first, find) in menuList" :key="find" :index="find.toString()">
@@ -71,7 +71,7 @@
         methods: {
             reviewRoute() {
                 this.menuList = this.$router['options']['routes'];
-                window.console.log(this.menuList);
+                // window.console.log(this.menuList);
 
             },
             handleOpen() { // key, keyPath
@@ -86,22 +86,32 @@
 <style lang="scss" scoped type="text/css">
     @import "~@/assets/css/variable.scss";
 
+    .is-active,.router-link-active{
+        background-color: $active-nav!important;
+    }
+    .el-menu-item-group li:hover{
+        background-color: $active-nav!important;
+    }
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        margin-left: 10px;
     }
     .admin-logo{
         width: 100%;
         text-align: center;
         height: 50px;
         line-height: 50px;
-        color: $pink;
-        border-bottom: 1px solid #495057;
+        color: white;
+        border-bottom: 1px solid $color;
     }
     .menu-box{
         float: left;
-        height: 100%;
         width: 100%;
-        background-color:#545c64;
+        background-color: $color;
+        overflow: hidden;
+        height: 100%;
     }
     .el-menu--collapse {
         height: 100%;

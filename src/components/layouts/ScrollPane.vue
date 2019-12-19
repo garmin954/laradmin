@@ -1,20 +1,25 @@
 <template>
     <div>
-    <el-scrollbar ref="scrollContainer" :vertical="false" class="scroll-container" @wheel.native.prevent="handleScroll">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <slot/>
-            </div>
-            <div class="switch-button switch-button-left el-icon-d-arrow-left"></div>
-            <div class="switch-button switch-button-right el-icon-d-arrow-right"></div>
-        </div>
+    <el-scrollbar
+            ref="scrollContainer"
+            :vertical="false"
+            class="scroll-container"
+            @wheel.native.prevent="handleScroll">
+        <slot/>
+<!--        <div class="swiper-container">-->
+<!--            <div class="swiper-wrapper">-->
+<!--                <slot/>-->
+<!--            </div>-->
+<!--            <div class="switch-button switch-button-left el-icon-d-arrow-left"></div>-->
+<!--            <div class="switch-button switch-button-right el-icon-d-arrow-right"></div>-->
+<!--        </div>-->
     </el-scrollbar>
     </div>
 </template>
 
 <script>
-    import Swiper from  'swiper'
-    import 'swiper/css/swiper.min.css'
+    // import Swiper from  'swiper'
+    // import 'swiper/css/swiper.min.css'
     const tagAndTagSpacing = 4; // tagAndTagSpacing
 
     export default {
@@ -26,16 +31,14 @@
         },
         mounted(){
             this.$nextTick(function(){
-                new Swiper(".swiper-container",{
-                    direction:"horizontal",/*横向滑动*/
-                    // loop:true,//形成环路（即：可以从最后一张图跳转到第一张图
-                    pagination:".swiper-pagination",/*分页器*/
-                    autoplay:1000,/*每隔3秒自动播放*/
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                });
+                // new Swiper(".swiper-container",{
+                //     direction:"horizontal",/*横向滑动*/
+                //     navigation: {
+                //         nextEl: '.switch-button-left',
+                //         prevEl: '.switch-button-right',
+                //     },
+                // });
+                window.console.log('dsds');
             })
         },
         computed: {
@@ -54,6 +57,7 @@
                 const $containerWidth = $container.offsetWidth;
                 const $scrollWrapper = this.scrollWrapper;
                 const tagList = this.$parent.$refs.tag;
+                window.console.log($container);
 
                 let firstTag = null;
                 let lastTag = null;
@@ -91,16 +95,19 @@
     };
 </script>
 
-<style >
+<style lang="scss">
+    @import "~@/assets/css/sidebar.scss";
+
     .switch-button{
         position: absolute;
-        top: 95%;
+        background: white;
+        top: 1px;
         width: calc(var(--swiper-navigation-size)/ 44 * 27);
-        height: var(--swiper-navigation-size);
-        margin-top: calc(-1 * var(--swiper-navigation-size)/ 2);
+        height: 100%;
+        line-height: 100%;
         z-index: 10;
         cursor: pointer;
-        display: flex;
+        display: flex!important;
         align-items: center;
         justify-content: center;
         /*color: var(--swiper-navigation-color,var(--swiper-theme-color));*/
@@ -108,25 +115,33 @@
 
     }
     .switch-button-left{
-        left: 10px;
+        left: 0px;
         right: auto;
     }
     .switch-button-right{
-        right: 10px;
+        right: 0px;
         left: auto;
     }
-    .swiper-wrapper{
-        box-sizing: content-box;
-        padding: 0 10px;
-        margin: 0 10px;
-    }
-    .el-scrollbar__view{position: static}
+    /*.swiper-wrapper{*/
+    /*    box-sizing: content-box;*/
+    /*    padding: 0 10px;*/
+    /*    margin: 0 10px;*/
+    /*}*/
+    /*.el-scrollbar__view{position: static}*/
 
     .scroll-container {
         white-space: nowrap;
         position: relative;
         overflow: hidden;
         width: 100%;
+    /deep/ {
+    .el-scrollbar__bar {
+        bottom: 0px;
+    }
+    .el-scrollbar__wrap {
+        height: 49px;
+    }
+    }
     }
 
     .theme-message, .theme-picker-dropdown {

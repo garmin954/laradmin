@@ -43,14 +43,14 @@ export default {
   ::-webkit-scrollbar-thumb {
     /*滚动条里面小方块*/
     border-radius: 5px;
-    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-    background   : #535353;
+    box-shadow   : inset 0 0 5px rgba(255, 255, 255, 0.2);
+    background   : #899ba4;
   }
   ::-webkit-scrollbar-track {
     /*滚动条里面轨道*/
-    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow   : inset 0 0 5px rgba(78, 84, 101);
     border-radius: 10px;
-    background   : #ededed;
+    background   : rgb(78, 84, 101);
   }
   html,body,#app{
     height: 100%;
