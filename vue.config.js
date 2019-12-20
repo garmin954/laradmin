@@ -8,9 +8,10 @@ module.exports = {
         loaderOptions: {
             sass: {
                 // @是src的别名
-                data: `
-                    @import "@/assets/css/variable.sass";
-                  `
+                // data: `
+                //     @import "@/assets/css/variable.sass";
+                //   `
+                prependData: `@import "~@/assets/css/variable.scss";`
             }
         }
     },

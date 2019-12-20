@@ -5,14 +5,13 @@
             :vertical="false"
             class="scroll-container"
             @wheel.native.prevent="handleScroll">
-        <slot/>
-<!--        <div class="swiper-container">-->
-<!--            <div class="swiper-wrapper">-->
-<!--                <slot/>-->
-<!--            </div>-->
-<!--            <div class="switch-button switch-button-left el-icon-d-arrow-left"></div>-->
-<!--            <div class="switch-button switch-button-right el-icon-d-arrow-right"></div>-->
-<!--        </div>-->
+        <!--<div class="swiper-container">-->
+            <!--<div class="swiper-wrapper"  >-->
+                <slot/>
+            <!--</div>-->
+            <div class="switch-button switch-button-left el-icon-d-arrow-left" @click="moveToLeft()"></div>
+            <div class="switch-button switch-button-right el-icon-d-arrow-right" @click="moveToRight()"></div>
+        <!--</div>-->
     </el-scrollbar>
     </div>
 </template>
@@ -32,13 +31,13 @@
         mounted(){
             this.$nextTick(function(){
                 // new Swiper(".swiper-container",{
-                //     direction:"horizontal",/*横向滑动*/
+                //     // direction:"horizontal",/*横向滑动*/
                 //     navigation: {
                 //         nextEl: '.switch-button-left',
                 //         prevEl: '.switch-button-right',
                 //     },
                 // });
-                window.console.log('dsds');
+                // window.console.log('dsds');
             })
         },
         computed: {
@@ -57,16 +56,15 @@
                 const $containerWidth = $container.offsetWidth;
                 const $scrollWrapper = this.scrollWrapper;
                 const tagList = this.$parent.$refs.tag;
-                window.console.log($container);
-
+                // window.console.log(currentTag);
                 let firstTag = null;
                 let lastTag = null;
-
                 // find first tag and last tag
                 if (tagList.length > 0) {
                     firstTag = tagList[0];
                     lastTag = tagList[tagList.length - 1];
                 }
+                window.console.log($scrollWrapper.style.left - $containerWidth);
 
                 if (firstTag === currentTag) {
                     $scrollWrapper.scrollLeft = 0;
@@ -77,10 +75,8 @@
                     const currentIndex = tagList.findIndex(item => item === currentTag);
                     const prevTag = tagList[currentIndex - 1];
                     const nextTag = tagList[currentIndex + 1];
-
                     // the tag's offsetLeft after of nextTag
                     const afterNextTagOffsetLeft = nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + tagAndTagSpacing;
-
                     // the tag's offsetLeft before of prevTag
                     const beforePrevTagOffsetLeft = prevTag.$el.offsetLeft - tagAndTagSpacing;
 
@@ -91,11 +87,20 @@
                     }
                 }
             },
+            moveToLeft(){
+                const $scrollWrapper = this.scrollWrapper;
+                $scrollWrapper.scrollLeft -=  150;
+            },
+            moveToRight(){
+                const $scrollWrapper = this.scrollWrapper;
+                $scrollWrapper.scrollLeft += 150;
+            },
+            
         },
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" type="text/css">
     @import "~@/assets/css/sidebar.scss";
 
     .switch-button{
@@ -103,7 +108,7 @@
         background: white;
         top: 1px;
         width: calc(var(--swiper-navigation-size)/ 44 * 27);
-        height: 100%;
+        height: 33px;;
         line-height: 100%;
         z-index: 10;
         cursor: pointer;
@@ -122,27 +127,27 @@
         right: 0px;
         left: auto;
     }
-    /*.swiper-wrapper{*/
-    /*    box-sizing: content-box;*/
-    /*    padding: 0 10px;*/
-    /*    margin: 0 10px;*/
-    /*}*/
-    /*.el-scrollbar__view{position: static}*/
+    .swiper-wrapper{
+        box-sizing: content-box;
+        padding: 0 10px;
+        margin: 0 10px;
+    }
+    .el-scrollbar__view{position: static}
 
-    .scroll-container {
-        white-space: nowrap;
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-    /deep/ {
-    .el-scrollbar__bar {
-        bottom: 0px;
-    }
-    .el-scrollbar__wrap {
-        height: 49px;
-    }
-    }
-    }
+    /*.scroll-container {*/
+        /*white-space: nowrap;*/
+        /*position: relative;*/
+        /*overflow: hidden;*/
+        /*width: 100%;*/
+        /*/deep/ {*/
+            /*.el-scrollbar__bar {*/
+                /*bottom: 0px;*/
+            /*}*/
+            /*.el-scrollbar__wrap {*/
+                /*height: 40px;*/
+            /*}*/
+        /*}*/
+    /*}*/
 
     .theme-message, .theme-picker-dropdown {
         z-index: 99999 !important
@@ -276,11 +281,11 @@
     }
 
      .tags-view-item:first-of-type {
-        margin-left: 15px
+        margin-left: 25px
     }
 
      .tags-view-item:last-of-type {
-        margin-right: 15px
+        margin-right: 25px
     }
 
      .tags-view-item.active {

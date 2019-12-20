@@ -10,7 +10,8 @@ const tagsview ={
             state.visitedviews.push({
                 name:view.name,
                 path:view.path,
-                title:view.meta.title || 'no-title'
+                title:view.meta.title || 'no-title',
+                icon:view.meta.icon || 'el-icon-setting'
             })
         },
         DEL_VISITED_VIEWS:(state, view)=>{//关闭页签--删除路由数据的方法

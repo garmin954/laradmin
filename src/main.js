@@ -14,19 +14,20 @@ import 'es6-promise/auto'
 Vue.use(Vuex);
 Vue.use(ElementUI);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 
 import router from './routes/router'
 import store from './store'
-// import Sass from './assets/css/variable.scss';
+import Sass from './assets/css/variable.scss';
+
 
 new Vue({
   render: h => h(App),
   router,
   store,
-  // Sass
-}).$mount('#app')
+  Sass, 
+}).$mount('#app');
 
 
 

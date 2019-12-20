@@ -109,7 +109,7 @@ $type-width : "10"+"px";    // “+”将两个字符连接
   content: to-upper-case(aAa); //将字符串转大小，To-lower-case()小写
 }
 .test4{
-  width : precentage(20px / 200px);   //将一个不带单位的数转换成百分比值
+  //width : precentage(20px / 200px);   //将一个不带单位的数转换成百分比值
 }
 .test5{
   width: ceil(12.3)   //取整大于本身（13）; floor取整小于本身; abs返回一个数的绝对值

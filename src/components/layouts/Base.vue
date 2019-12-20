@@ -11,7 +11,7 @@
                     <tags-view></tags-view>
                 </el-header>
                 <el-main>
-                    <app-main></app-main>
+                    <app-main class="app-main"></app-main>
                 </el-main>
             </el-container>
         </el-container>
@@ -69,9 +69,10 @@
     .base-box, .el-container, .el-aside{
         height: 100%;
     }
-
     .el-main{
-        padding: 20px 30px 20px 20px;
+        position: relative;
+        overflow-y: scroll;
+        padding: 15px 15px;
     }
     .el-aside{transition: all 0.8s;}
 

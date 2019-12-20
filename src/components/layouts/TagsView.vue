@@ -6,7 +6,7 @@
                 <div class="tags-view-item nav-index"><i class="el-icon-house"></i></div>
             </router-link>
         </div>
-        <scroll-pane ref="scrollPane"  class="tags-view-wrap">
+        <scroll-pane ref="scrollpane"  class="tags-view-wrap">
 
             <router-link
                     v-for="tag in Array.from(visitedViews)"
@@ -73,16 +73,18 @@
                 const tags = this.$refs.tag;
                 // let self = this;
                 this.$nextTick(() => {
-                    window.console.log(tags);
+                    // window.console.log(tags);
+                    
                     if (tags !== undefined){
                         for (const tag of tags) {
-                            if (tag.to.path === this.$route.path) {
-                                // window.console.log(self.$refs)
-                                this.$refs.scrollPane.moveToTarget(tag)
+                            if (tag.to === this.$route.path) {
+
+                                this.$refs.scrollpane.moveToTarget(tag);
                                 //when query is different then update
-                                if (tag.to.fullPath !== this.$route.fullPath) {
+                                if (tag.$route.fullPath !== this.$route.fullPath) {
                                     this.$store.dispatch('updateVisitedView', this.$route)
                                 }
+                                
                                 break
                             }
                         }
@@ -100,6 +102,9 @@
     .close-all,.nav-index{
         position: relative;
         left: 10px;
+    }
+    .nav-index{
+        margin: 3px 15px!important;
     }
     .close-all{
         display: block;

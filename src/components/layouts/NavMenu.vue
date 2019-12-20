@@ -15,7 +15,7 @@
                  active-text-color="#ffd04b">
             <el-submenu  v-for="(first, find) in menuList" :key="find" :index="find.toString()">
                 <template slot="title">
-                    <i class="el-icon-location"></i>
+                    <i :class="first.meta.icon ? first.meta.icon : 'el-icon-setting'"></i>
                     <span slot="title">{{first.meta.title}}</span>
                 </template>
                 <el-menu-item-group>
@@ -71,8 +71,6 @@
         methods: {
             reviewRoute() {
                 this.menuList = this.$router['options']['routes'];
-                // window.console.log(this.menuList);
-
             },
             handleOpen() { // key, keyPath
 

@@ -18,7 +18,25 @@
 <!--            <template slot="title">我的工作台</template>-->
 <!--            <el-menu-item index="2-1">选项1</el-menu-item>-->
 <!--        </el-submenu>-->
+
+        <el-submenu index="3">
+            <template slot="title">
+                <el-avatar size="medium" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar>
+                我的工
+            </template>
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+        </el-submenu>
+
+        <el-menu-item index="1">
+            <router-link to="/">
+                <i class="el-icon-message-solid"></i>
+            </router-link>
+        </el-menu-item>
+
     </el-menu>
+ 
     </div>
 
 
@@ -55,10 +73,31 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .top-menu-box{
         display: inline-block;
         width: 100%;
     }
+    
+    // @bgcolorlist储存背景颜色
+    $bgcolorlist: 20;
+
+    // 使用SASS for循环语句为每一个li设置background-color
+    @for $i from 1 to $bgcolorlist+1 {
+        .top-menu-box ul li:nth-child(#{$i}) {
+            @if($i > 3){
+                float: right;
+            } else {
+                float: left;             
+            }
+        }
+    }
+    .top-menu-box ul li:nth-child(4){
+        margin-right: 2rem;
+    }
+    .el-menu-item{float: left}
+    /deep/.el-submenu__icon-arrow{display: contents}
+    /deep/.el-menu--horizontal>.el-submenu .el-submenu__title{height: 45px;line-height: 45px}
+    .right-menu{float: right; margin-right: 3rem;width: auto}
     .el-header,.el-menu--horizontal>.el-menu-item{height: 45px;line-height: 45px}
 </style>
