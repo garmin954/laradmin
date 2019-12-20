@@ -1,25 +1,47 @@
 <template>
     <div>
-        <el-row>
-           <el-col :span="5">
-                   <i class="el-icon-edit"></i>
-                   <i class="el-icon-share"></i>
-                   <i class="el-icon-delete"></i>
-                   <el-button type="primary" icon="el-icon-search">搜索</el-button>
-           </el-col>
-        </el-row>
-        
-        <jm-cart></jm-cart>
+<!--        <el-row>-->
+<!--           <el-col :span="5">-->
+<!--                   <i class="el-icon-edit"></i>-->
+<!--                   <i class="el-icon-share"></i>-->
+<!--                   <i class="el-icon-delete"></i>-->
+<!--                   <el-button type="primary" icon="el-icon-search">搜索</el-button>-->
+<!--           </el-col>-->
+<!--        </el-row>-->
+        <jm-cart-row>
+            <jm-cart :span="12">
+                <div slot="card-header"> 这个地方是标题 </div>
+                <div slot="card-body"> 这个地方是内容 </div>
+            </jm-cart>
+
+<!--            <jm-cart :span="6">-->
+<!--                <div slot="card-header"> 这个地方是标题 </div>-->
+<!--                <div slot="card-body"> 这个地方是内容 </div>-->
+<!--            </jm-cart>-->
+
+<!--            <jm-cart :span="6">-->
+<!--                <div slot="card-header"> 这个地方是标题 </div>-->
+<!--                <div slot="card-body"> 这个地方是内容 </div>-->
+<!--            </jm-cart>-->
+
+<!--            <jm-cart :span="6">-->
+<!--                <div slot="card-header"> 这个地方是标题 </div>-->
+<!--                <div slot="card-body"> 这个地方是内容 </div>-->
+<!--            </jm-cart>-->
+        </jm-cart-row>
     </div>
 </template>
 
 <script>
-    import JmCart from ''
+    import JmCart from '../../../components/jmui/JmCard'
+    import JmCartRow from '../../../components/jmui/JmCardRow'
+
     export default {
         name: "Icon",
-        components:[
+        components:{
+            JmCartRow,
             JmCart,
-        ]
+        }
     }
 </script>
 

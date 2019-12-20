@@ -1,19 +1,20 @@
 <template>
-    <div>
-        <el-row>
-            <el-col :span="24">
-                <div class="jm-cart-title">
-                    <solt name="title"></solt>
-                </div>
-            </el-col>
-        </el-row>
-    </div>
+        <el-col :span="span">
+            <div class="jm-cart-header">
+                <slot name="card-header"></slot>
+            </div>
+
+            <div class="jm-cart-body">
+                <slot name="card-body"></slot>
+            </div>
+        </el-col>
 </template>
 
 <script>
     export default {
-        props:[span],
-        name: "JmCard"
+        name: "JmCard",
+        props:['span'],
+
     }
 </script>
 
@@ -23,7 +24,7 @@
         background-color: #fff;
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
     }
-    .jm-cart-title{
+    .jm-cart-header{
         width: 100%;
         position: relative;
         height: 42px;
@@ -33,5 +34,10 @@
         color: #333;
         border-radius: 2px 2px 0 0;
         font-size: 14px;
+    }
+    .jm-cart-body{
+        position: relative;
+        padding: 10px 15px;
+        line-height: 24px;
     }
 </style>

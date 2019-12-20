@@ -73,6 +73,7 @@
         position: relative;
         overflow-y: scroll;
         padding: 15px 15px;
+        overflow-x: hidden;
     }
     .el-aside{transition: all 0.8s;}
 
