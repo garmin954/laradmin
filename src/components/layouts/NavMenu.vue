@@ -70,7 +70,14 @@
         },
         methods: {
             reviewRoute() {
+                //hidden
+                let self = this;
                 this.menuList = this.$router['options']['routes'];
+                this.menuList.forEach( (url, index) => {
+                    if (url.hidden !== undefined && url.hidden === true){
+                        self.menuList.splice(index, 1);      
+                    } 
+                })
             },
             handleOpen() { // key, keyPath
 

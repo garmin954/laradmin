@@ -9,12 +9,16 @@ Vue.use(VueRouter);
 import AdminIndex from '../components/pages/admin/Index'
 import AdminIcon from '../components/pages/admin/Icon'
 import AppMain from '../components/layouts/AppMain'
+import Cart from  '../components/pages/jmui/Cart'
+import Login from  '../components/pages/jmui/Login'
+
 export default new VueRouter({
 
     routes:[
         {
             path : '/',
-            redirect: '/index',
+            name:'admin',
+            redirect: '/admin/admin-index',
             component: AppMain,
             meta: {title: '主页', icon:'el-icon-s-home'},
             children:[
@@ -40,10 +44,24 @@ export default new VueRouter({
                 {
                     path : '/admin/cart',
                     meta: {title: 'Cart'},
-                    name: 'icon',
-                    component : AdminIcon,
+                    name: 'cart',
+                    component : Cart,
+                },
+                {
+                    path : '/admin/login',
+                    redirect: '/login',
+                    meta: {title: '登录'},
+                    name: 'login',
+                    component : Login,
                 },
             ]
+        },
+        {
+            path : '/login',
+            name : 'login',
+            component: Login,
+            meta: {title: 'login'},
+            hidden:true,
         },
     ]
 })

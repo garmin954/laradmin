@@ -6,6 +6,9 @@ const tagsview ={
     mutations:{//这
         ADD_VISITED_VIEWS:(state,view)=>{//打开新页签--添加路由数据的方法
             if(state.visitedviews.some(v=>v.path==view.path))return;
+            if (view.name == 'login'){
+                return ;
+            } 
             if(view.name == 'admin')return;
             state.visitedviews.push({
                 name:view.name,
@@ -22,10 +25,13 @@ const tagsview ={
                 }
             }
         },
-        DEL_ALL_VISITED_VIEWS:(state)=>{
+        // 关闭所有
+        DEL_ALL_VISITED_VIEWS:(state, view)=>{
             state.visitedviews = [];
+            view.push({name:'admin'})
+            // window.location.href = '/admin';
         },
-
+        
         UPDATE_VISITED_VIEW: (state, view) => {
             for (let v of state.visitedViews) {
                 if (v.path === view.path) {
@@ -46,9 +52,9 @@ const tagsview ={
                 resolve([...state.visitedviews]);
             })
         },
-        delAllVisitedViews({ commit}){//删除数组存放的路由之后，需要再去刷新路由，这是一个异步的过程，需要有回掉函数，所以使用并返回promise对象，也可以让组件在调用的时候接着使用.then的方法
+        delAllVisitedViews({ commit}, view){//删除数组存放的路由之后，需要再去刷新路由，这是一个异步的过程，需要有回掉函数，所以使用并返回promise对象，也可以让组件在调用的时候接着使用.then的方法
             // commit('DEL_VISITED_VIEWS',view)
-            commit('DEL_ALL_VISITED_VIEWS');
+            commit('DEL_ALL_VISITED_VIEWS', view);
             // return new Promise((resolve)=>{//resolve方法：未来成功后回掉的方法
             //     commit('DEL_ALL_VISITED_VIEWS');
             //     resolve([...state.visitedviews]);

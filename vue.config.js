@@ -16,10 +16,27 @@ module.exports = {
         }
     },
     chainWebpack: config => {
+        //命名 
         config.resolve.alias
             .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
-            .set('@jm', resolve('src/components/jmui')) // key,value自行定义，比如.set('@@', resolve('src/components'))
-            .set('_c', resolve('src/components'))
+            .set('_jmui', __dirname+'src/components/jmui') // key,value自行定义，比如.set('@@', resolve('src/components'))
+            .set('_com', __dirname+'/src/components')
+            .set('_conf', resolve('config'))
+            .set('_pages', resolve('src/pages'));
+
+        //打包文件带hash
+        config.output.filename('[name].[hash].js').end();
+        
+        //为了补删除换行而加的配置
+        config.module
+            .rule("vue")
+            .use("vue-loader")
+            .loader("vue-loader")
+            .tap(options => {
+                // modify the options...
+                options.compilerOptions.preserveWhitespace = true;
+                return options;
+            });
     },
 
 
