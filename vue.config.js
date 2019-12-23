@@ -19,10 +19,10 @@ module.exports = {
         //命名 
         config.resolve.alias
             .set('@', resolve('src')) // key,value自行定义，比如.set('@@', resolve('src/components'))
-            .set('_jmui', __dirname+'src/components/jmui') // key,value自行定义，比如.set('@@', resolve('src/components'))
-            .set('_com', __dirname+'/src/components')
-            .set('_conf', resolve('config'))
-            .set('_pages', resolve('src/pages'));
+            .set('@jmui', resolve('src/components/jmui/'))
+            .set('@com', __dirname+'/src/components')
+            .set('@conf', resolve('config'))
+            .set('@pages', resolve('src/pages'));
 
         //打包文件带hash
         config.output.filename('[name].[hash].js').end();
@@ -39,6 +39,16 @@ module.exports = {
             });
     },
 
+    configureWebpack: {
+        resolve: {
+            alias: {
+                'assets': '@/assets',
+                'components': '@/components',
+                'views': '@/views',
+                '@jmui': resolve('src/components/jmui'),
+            }
+        }
+    }
 
 }
 

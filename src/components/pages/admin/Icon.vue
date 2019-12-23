@@ -1,82 +1,18 @@
 <template>
     <div>
-<!--        <el-row>-->
-<!--           <el-col :span="5">-->
-<!--                   <i class="el-icon-edit"></i>-->
-<!--                   <i class="el-icon-share"></i>-->
-<!--                   <i class="el-icon-delete"></i>-->
-<!--                   <el-button type="primary" icon="el-icon-search">搜索</el-button>-->
-<!--           </el-col>-->
-<!--        </el-row>-->
-        <jm-cart-row>
-            <jm-cart :span="12">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-            <jm-cart :span="6">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-            <jm-cart :span="6">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-        </jm-cart-row>
-
-        <jm-cart-row>
-            <jm-cart :span="6">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-            <jm-cart :span="9">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-            <jm-cart :span="9">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-        </jm-cart-row>
-
-        <jm-cart-row>
-            <jm-cart :span="4">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-            <jm-cart :span="4">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-
-            <jm-cart :span="4">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-            
-            <jm-cart :span="12">
-                <div slot="card-header"> 这个地方是标题 </div>
-                <div slot="card-body"> 这个地方是内容 </div>
-            </jm-cart>
-        </jm-cart-row>
+ 
+        <jm-fonts></jm-fonts>
+      
     </div>
 </template>
 
 <script>
-    import JmCart from '../../../components/jmui/JmCard'
-    import JmCartRow from '../../../components/jmui/JmCardRow'
+    import JmFonts from '../../../components/jmui/JmFonts'
 
     export default {
         name: "Icon",
         components:{
-            JmCartRow,
-            JmCart,
+            JmFonts,
         }
     }
 </script>

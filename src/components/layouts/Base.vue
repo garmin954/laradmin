@@ -65,6 +65,7 @@
         box-sizing: content-box;
         padding: 0px 0px 0px 0px;
         background: #ffffff;
+        z-index: 999999;
     }
     .base-box, .el-container, .el-aside{
         height: 100%;
