@@ -11,7 +11,7 @@ import AdminIcon from '../components/pages/admin/Icon'
 import AppMain from '../components/layouts/AppMain'
 import Cart from  '../components/pages/jmui/Cart'
 import Login from  '../components/pages/jmui/Login'
-
+import Edit from '../components/pages/jmui/Edit'
 export default new VueRouter({
 
     routes:[
@@ -54,6 +54,12 @@ export default new VueRouter({
                     name: 'login',
                     component : Login,
                 },
+                {
+                    path: '/admin/jmui/edit',
+                    name: 'jm_editor',
+                    meta: {title: '在线编辑器'},
+                    component : Edit,
+                }
             ]
         },
         {

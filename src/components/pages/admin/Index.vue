@@ -14,13 +14,28 @@
                 Element UI
             </div>
             </el-col>
+           
+        </el-row>
+
+        <el-row :gutter="20">
+            <el-col :span="24">
+                <div class="grid-content bg-purple">
+                    <img :src="img" alt="">
+                </div>
+            </el-col>
+             
         </el-row>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Index"
+        name: "Index",
+        data(){
+            return {
+                img:'http://pic.tsmp4.net/api/fengjing/img.php',
+            }
+        }
     }
 </script>
 

@@ -10,8 +10,11 @@
             </router-link>
         </el-menu-item>
         <el-menu-item>
-
-            <i class="el-icon-refresh" @click="refresh"></i>
+            <router-link :to="crouter" @click.native="refresh">
+                <i class="el-icon-refresh" ></i>
+            </router-link>
+            <!--.native-->
+            
         </el-menu-item>
 
 <!--        <el-submenu index="2">-->
@@ -50,7 +53,18 @@
                 activeIndex: '1',
                 activeIndex2: '1',
                 showNav: false,
+                crouter : '',
             };
+        },
+        computed:{
+            currentRouter(){
+                return this.$router.app._route.fullPath;
+            }
+        },
+        watch:{
+            currentRouter(val){
+                this.crouter = val;
+            }
         },
         methods: {
             changenav(){
@@ -67,7 +81,10 @@
 
             },
             refresh(){
-                this.$router.go(0);
+                // this.$router.go(0);
+                this.$store.dispatch('changeShow', false);
+                this.$parent.$parent.$parent.$parent.reloads();
+               
             }
         }
     }

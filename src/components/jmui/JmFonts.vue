@@ -2208,21 +2208,28 @@
     Vue.use(VueClipboard);
     export default {
         name: "JmFonts",
-       
+        data(){
+            return {
+                type: 'l', // 方式 （1：复制， 2：点击回到添加到父组件）
+                selected: '',
+            }
+        },
         mounted(){
             this.readyFonts();
         },
-        data(){
-          return {
-              type: 'l', // 方式 （1：复制， 2：点击回到添加到父组件）
-              selected: '',
-          }  
+        created(){
+            this.types
         },
         methods:{
+            types(){
+                if (this.type === '2'){
+                    document.getElementsByClassName('code-name').style.display = 'none'
+                }
+            },
             readyFonts(){
                 let elm = this.$refs.container;
                 let self = this;
-                window.console.log(typeof elm.childNodes);
+                // window.console.log(typeof elm.childNodes);
                 // window.console.log(self);
                 Object.keys(elm.childNodes).forEach(key=>{
                     let el = elm.childNodes[key];
@@ -2238,6 +2245,7 @@
                             })    
                         } else {
                             // self.$emit()
+                            
                         }
                     });
                 });

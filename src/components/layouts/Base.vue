@@ -11,7 +11,7 @@
                     <tags-view></tags-view>
                 </el-header>
                 <el-main>
-                    <app-main class="app-main"></app-main>
+                    <app-main ref="main" class="app-main"></app-main>
                 </el-main>
             </el-container>
         </el-container>
@@ -55,6 +55,9 @@
                 }
             },
 
+            reloads(){
+                this.$refs.main.reloads()
+            }
         }
     }
 </script>
@@ -73,7 +76,7 @@
     .el-main{
         position: relative;
         overflow-y: scroll;
-        padding: 15px 15px;
+        padding: 0px 0px;
         overflow-x: hidden;
     }
     .el-aside{transition: all 0.8s;}

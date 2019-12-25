@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import tagsview from './modules/tagsview.js'
+import reloadpage from './modules/reloadpage.js'
 import getters from './getter.js'
 
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 // // https://webpack.js.org/guides/dependency-management/#requirecontext
 // const modulesFiles = require.context('./modules', true, /\.js$/)
 //
@@ -24,9 +25,10 @@ const store= new Vuex.Store({
         name:'YuanLu',
     },
     modules:{
-        tagsview
+        tagsview,
+        reloadpage
     },
     getters
-})
+});
 
 export default store
