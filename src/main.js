@@ -10,9 +10,11 @@ import 'nprogress/nprogress.css'
 import Vuex from 'vuex'
 import 'es6-promise/auto'
 
+import Axios from 'axios'
 
 Vue.use(Vuex);
 Vue.use(ElementUI);
+Vue.use(Axios);
 
 Vue.config.productionTip = true
 

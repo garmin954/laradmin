@@ -20,7 +20,7 @@
         <el-row :gutter="20">
             <el-col :span="24">
                 <div class="grid-content bg-purple">
-                    <img :src="img" alt="">
+                    <!--<img :src="img" alt="">-->
                 </div>
             </el-col>
              
@@ -29,11 +29,25 @@
 </template>
 
 <script>
+    import Axios from 'axios'
+
     export default {
         name: "Index",
         data(){
             return {
-                img:'http://pic.tsmp4.net/api/fengjing/img.php',
+                // img:'',
+                api: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8¬ice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&topid=36&_=1520777874472',
+            }
+        },
+        created(){
+            this.getGoodsList();
+        },
+        methods:{
+            getGoodsList(){
+                Axios.get("http://p1.music.126.net/top/list?idx=6", {}).then(response=>{
+                    // let res = response.data;
+                    window.console.log(response);
+                })
             }
         }
     }
